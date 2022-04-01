@@ -1,31 +1,24 @@
 const mongoose = require("mongoose");
 
-const assessmentSchema = new mongoose.Schema({
-  assessmentID: {
-    type: Schema.Types.ObjectId,
-    default: () => new Types.ObjectId(),
+// Milestone schema to handle both drafts and final submissions
+// By default:
+// - an assessment has 2x milestones
+// - the 1st milestone has 'draft: true', the 2nd has 'draft: false'
+// Default behaviour is handled by the appropriate route(s)
+const mileStoneSchema = new mongoose.Schema({
+  milestone: {
+    draft: Boolean, // Indicates whether the milestone is for a draft
+    due: Date,
+    submitted: Date, // Takes a date if submitted, falsy otherwise
+    // TODO: Add middleware to handle grading logic/draft quality
+    grade: String, // Validated on the front end
+    email: Date, // Logic handled by middleware (i.e. whether/what kind of email required)
   },
+});
+
+const assessmentSchema = new mongoose.Schema({
   assessmentName: String,
-  draftDue: Date,
-  draftSubmitted: Boolean,
-  draftQuality: String,
-  finalDue: Date,
-  finalSubmitted: Boolean,
-  finalGrade: String,
-});
-
-assessmentSchema.virtual("draftEmailRequired").get(function () {
-  if (Date.now() >= draftDue) {
-    return true;
-  }
-  return false;
-});
-
-assessmentSchema.virtual("finalEmailRequired").get(function () {
-  if (Date.now() >= finalDue) {
-    return true;
-  }
-  return false;
+  milestones: [mileStoneSchema],
 });
 
 module.exports = assessmentSchema;
