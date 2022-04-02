@@ -3,7 +3,6 @@ const Class = require("../models/Class");
 const classSeedData = require("../data/classSeedData");
 
 module.exports = {
-
   // Get all classes
   getClasses(req, res) {
     Class.find().then(async (classes) => {
@@ -25,9 +24,10 @@ module.exports = {
           : res.json({ classByID })
       );
   },
-  
+
   // Seed the database
   async createMultipleClasses(req, res) {
+    await Class.deleteMany({});
     const seededClasses = await Class.insertMany(classSeedData);
     res.status(200).json(seededClasses);
   },

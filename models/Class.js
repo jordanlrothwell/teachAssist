@@ -6,7 +6,7 @@ const classSchema = new mongoose.Schema(
     level: String,
     students: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Student",
       },
     ],
