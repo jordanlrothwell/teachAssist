@@ -31,7 +31,8 @@ module.exports = {
     try {
       const newAssessment = await Student.findOneAndUpdate(
         { _id: req.params.studentID },
-        { $set: req.body }
+        { $addToSet: { assessments: req.body } },
+        { runValidators: true, new: true }
       );
 
       if (!newAssessment) {
