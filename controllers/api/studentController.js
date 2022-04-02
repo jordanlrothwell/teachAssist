@@ -1,4 +1,4 @@
-const Student = require("../models/Student");
+const Student = require("../../models/Student");
 
 module.exports = {
   // Create a new student

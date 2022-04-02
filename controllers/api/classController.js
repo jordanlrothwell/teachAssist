@@ -1,6 +1,6 @@
-const Class = require("../models/Class");
+const Class = require("../../models/Class");
 
-const classSeedData = require("../data/classSeedData");
+const classSeedData = require("../../data/classSeedData");
 
 module.exports = {
   // Get all classes

@@ -3,7 +3,7 @@ const {
   getClasses,
   getSingleClass,
   createMultipleClasses,
-} = require("../../controllers/classController");
+} = require("../../controllers/api/classController");
 
 router.route("/").get(getClasses);
 

@@ -4,22 +4,25 @@ const {
   addAssessment,
   getStudents,
   getSingleStudent,
-} = require("../../controllers/studentController");
+} = require("../../controllers/api/studentController");
 
-/// CREATE ///
+//-------------------------------------------------- CREATE //
+
 // POST: Create Student
 router.route("/").post(createStudent);
+
 // POST: Create Assessment
 router.route("/:studentID").post(addAssessment);
 
-/// READ ///
+//-------------------------------------------------- READ //
 // GET: All students
 router.route("/").get(getStudents);
+
 // GET: Single student
 router.route("/:studentID").get(getSingleStudent);
 
-/// UPDATE ///
+//-------------------------------------------------- UPDATE //
 
-/// DELETE //
+//-------------------------------------------------- DELETE //
 
 module.exports = router;
